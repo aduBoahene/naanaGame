@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/info.png">
+      </ion-avatar>
+      <h2>What is the Capital Town of</h2>
+      <p style="text-align:center;font-size:15px;font-weight:bold"> {{oneCountry?.name}}</p>
+    </ion-item>
+
+    <!--<img src="{{oneCountry?.flag}}" style="min-height:300px;border:1px solid black;height:250px;width:100%">-->
+    <img src="{{oneCountry?.flag}}" style="width:100%">
+  </ion-card>
+
+
+  <ion-list>
+    <ion-item *ngFor="let ans of toBeDisplayed" (click)="refreshGame(ans)">
+      <ion-card padding>
+        {{ans}}
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+
+
+</ion-content>
