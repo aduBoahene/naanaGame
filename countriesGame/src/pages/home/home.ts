@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
 import { Http } from "@angular/http";
 import 'rxjs/add/operator/map'
 
@@ -20,12 +20,34 @@ export class HomePage {
   pAnswerArray:Array<any>=[];
   toBeDisplayed:Array<any>=[]
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController,public navParams: NavParams, public http: Http,private toastCtrl: ToastController) {
     
   }
 
   ionViewDidLoad() {
+    console.log("user wasnt entered", this.navParams.get('skip'))
+    if(this.navParams.get('skip')==true){
+      //make toast
+      console.log("show toast")
+      this.presentToast()
+    }
+
+
     this.getAllCountries()
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Player Name wasnt entered hence highScores wont be saved',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
   getAllCountries() {

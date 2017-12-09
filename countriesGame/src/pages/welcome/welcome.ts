@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the WelcomePage page.
@@ -15,11 +16,48 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  skipped:boolean=false
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+    this.presentPrompt()
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Enter Player Name',
+      inputs: [
+        {
+          name: 'username',
+          placeholder: 'Enter Name'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Skip',
+          handler: data => {
+            this.navCtrl.setRoot(HomePage,{
+              'skip':this.skipped=true
+            })
+          }
+        },
+        {
+          text: 'Go',
+          handler: data => {
+            console.log('Go clicked');
+            this.navCtrl.setRoot(HomePage,{
+              'player':data.username
+            })
+            console.log('Go clicked',data.username);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
