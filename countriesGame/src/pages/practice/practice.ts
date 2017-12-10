@@ -24,16 +24,18 @@ export class PracticePage {
   countries: any
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-    this.initializeItems();
+    
   }
 
   initializeItems() {
-    this.items = this.countries
+    this.items = [
+      'Amsterdam',
+      'Bogota'
+    ];
   }
 
   getItems(ev: any) {
     // Reset items back to all of the items
-   
     // set val to the value of the searchbar
     let val = ev.target.value;
 
@@ -47,8 +49,7 @@ export class PracticePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePage');
-    this.getAllCountries();
-    
+    this.getAllCountries()
   }
 
 
@@ -57,17 +58,16 @@ export class PracticePage {
       .map(res => res.json())
       .subscribe(data => {
         this.countries = data
-        this.items = this.countries
+        console.log("all countries", this.countries)
 
-        for(var a=0;a<=this.countries.length;a++){
-          console.log(this.countries[a].name)
+        for(let a=0;a<this.countries.length;a++){
+          console.log("all countries names", this.countries[a].name)
           this.items.push(this.countries[a].name)
+          console.log("all items", this.items)
         }
-        
-      
-       
 
       });
+      
   }
 
 

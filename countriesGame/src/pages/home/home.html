@@ -1,18 +1,23 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="md-menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title style="text-align:center">{{score}}</ion-title>
+
+    <ion-buttons end >
+        <button (click)="PlayPause()">
+            <ion-icon name="md-play" ></ion-icon>
+            </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-
   <ion-card>
 
-    <ion-item>
+    <ion-item  no-lines>
       <ion-avatar item-start>
         <img src="assets/info.png">
       </ion-avatar>
@@ -26,7 +31,7 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let ans of toBeDisplayed" (click)="refreshGame(ans)">
+    <ion-item *ngFor="let ans of toBeDisplayed" (click)="refreshGame(ans)"  no-lines>
       <ion-card padding>
         {{ans}}
       </ion-card>

@@ -12,6 +12,8 @@ import { AllCountriesProvider } from '../providers/all-countries/all-countries';
 import { HttpModule} from '@angular/http';
 import { PracticePage } from '../pages/practice/practice';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { SettingsPage } from '../pages/settings/settings';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,15 @@ import { WelcomePage } from '../pages/welcome/welcome';
     HomePage,
     ListPage,
     PracticePage,
-    WelcomePage
+    WelcomePage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +37,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
     HomePage,
     ListPage,
     PracticePage,
-    WelcomePage
+    WelcomePage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
