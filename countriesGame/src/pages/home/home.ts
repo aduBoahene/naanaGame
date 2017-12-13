@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, NavParams, LoadingController } from 'ionic-angular';
 import { Http } from "@angular/http";
 import 'rxjs/add/operator/map'
 import { SettingsPage } from '../settings/settings';
@@ -25,20 +25,17 @@ export class HomePage {
   score: number = 0
   t: number = 0
   maxNumber = 15
+  gameNumber:number=0
 
   play:true
   pause:false
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     public str:Storage) {
-    //this.timer()
-    
+  
   }
 
-  PlayPause(){
-    
-  }
 
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage)
@@ -73,11 +70,6 @@ export class HomePage {
 
   ionViewDidLoad() {
 
-    this.timer()
-
-    //set high score
-    
-
     console.log("user was entered", this.navParams.get('player'))
     if (this.navParams.get('skip') == true) {
       //make toast
@@ -102,9 +94,23 @@ export class HomePage {
   }
 
   getAllCountries() {
+
+
+    let loading = this.loadingCtrl.create({
+      content: 'Initialising...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+
+
     return this.http.get("https://restcountries.eu/rest/v2/all")
       .map(res => res.json())
       .subscribe(data => {
+        loading.dismiss()
         this.countries = data
         console.log("list of countries", data)
         console.log("countries from var", this.countries)
@@ -148,10 +154,12 @@ export class HomePage {
     console.log("selected ans", ans)
 
     if (ans == this.correctAnswer&&ans!=null) {
-      alert("correct ans")
+      alert("correct Answer "+ this.score)
       this.score = this.score + 1;
+      this.gameNumber = this.gameNumber + 1;
     } else {
-      alert("wrong ans")
+      alert("X The correct Capital of " + this.oneCountry.name + " is "+ this.correctAnswer)
+      this.gameNumber = this.gameNumber + 1;
     }
 
     this.toBeDisplayed = [];

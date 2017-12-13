@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Http } from "@angular/http";
 import 'rxjs/add/operator/map'
+import { List } from 'ionic-angular/components/list/list';
+import { CountryDetailPage } from '../country-detail/country-detail';
 
 /**
  * Generated class for the PracticePage page.
@@ -19,12 +21,16 @@ import 'rxjs/add/operator/map'
 export class PracticePage {
 
   searchQuery: string = '';
-  items: string[];
+  items: string[] = [];
 
-  countries: any
+  countries: object[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) { }
+
+  goToCountryDetail(country){
+    this.navCtrl.push(CountryDetailPage,{
+      'country':country
+    })
   }
 
   initializeItems() {
@@ -60,11 +66,15 @@ export class PracticePage {
         this.countries = data
         console.log("all countries", this.countries)
 
-        for(let a=0;a<this.countries.length;a++){
-          console.log("all countries names", this.countries[a].name)
-          this.items.push(this.countries[a].name)
-          console.log("all items", this.items)
-        }
+        this.countries.forEach(element => {
+          this.items.push(element["name"]);
+        });
+        console.log("all items", this.items)
+        // for(let a=0;a<this.countries.length;a++){
+        //   console.log("all countries names", this.countries[a].["name"])
+        //   this.items.push(this.countries[a].name)
+        //   console.log("all items", this.items)
+        // }
 
       });
       
