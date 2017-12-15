@@ -15,6 +15,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { SettingsPage } from '../pages/settings/settings';
 import { IonicStorageModule } from '@ionic/storage';
 import { CountryDetailPage } from '../pages/country-detail/country-detail';
+import { AboutPage } from '../pages/about/about';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CountryDetailPage } from '../pages/country-detail/country-detail';
     PracticePage,
     WelcomePage,
     SettingsPage,
-    CountryDetailPage
+    CountryDetailPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { CountryDetailPage } from '../pages/country-detail/country-detail';
     PracticePage,
     WelcomePage,
     SettingsPage,
-    CountryDetailPage
+    CountryDetailPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
