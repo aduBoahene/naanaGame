@@ -7,18 +7,150 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{country}}</ion-title>
+    <ion-title>{{toBeDisplayed?.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card>
-    <ion-item  no-lines>
-      <!--<img src="{{oneCountry?.flag}}" style="min-height:300px;border:1px solid black;height:250px;width:100%">-->
-      <img [src]="country?.capital" style="width:100%">
-    </ion-item>
+  <ion-card>
+    <img src="{{toBeDisplayed?.flag}}" style="width:100%">
   </ion-card>
+  <p style="font-size:20px;text-align:center;font-weight:bold;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">{{toBeDisplayed.capital}}</p>
+
+  <ion-row style="margin-top:-35px">
+    <ion-col>
+      <ion-card padding>
+        <ion-col col-4>
+          <b>Population :</b>
+        </ion-col>
+        <ion-col col-4>
+          <b>{{toBeDisplayed.population}}</b>
+        </ion-col>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top:-25px">
+      <ion-col>
+        <ion-card padding>
+          <ion-col col-4>
+            <b>Demonym :</b>
+          </ion-col>
+          <ion-col col-4>
+            <b>{{toBeDisplayed.demonym}}</b>
+          </ion-col>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  <ion-row style="margin-top:-25px">
+    <ion-col>
+      <ion-card padding>
+        <ion-col col-4>
+          <b>Area :</b>
+        </ion-col>
+        <ion-col col-4>
+          <b>{{toBeDisplayed.area}}</b>
+        </ion-col>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top:-25px">
+    <ion-col>
+      <ion-card padding>
+        <ion-col col-4>
+          <b>Region :</b>
+        </ion-col>
+        <ion-col col-4>
+          <b>{{toBeDisplayed.region}}</b>
+        </ion-col>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top:-25px">
+    <ion-col>
+      <ion-card padding>
+        <ion-col col-4>
+          <b>Sub Region :</b>
+        </ion-col>
+        <ion-col col-4>
+          <b>{{toBeDisplayed.subregion}}</b>
+        </ion-col>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-item>
+      <h6>Currencies</h6>
+      <ion-list no-lines>
+        <ion-item *ngFor="let c of toBeDisplayed.currencies">
+            <span item-left>{{c.symbol}}</span> <b>{{c.name}}</b>  
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-row>
+
+  <ion-row>
+      <ion-item>
+        <h6>Calling Codes</h6>
+        <ion-list no-lines>
+          <ion-item *ngFor="let c of toBeDisplayed.callingCodes">
+            <b>{{c}}</b>  
+          </ion-item>
+        </ion-list>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+        <ion-item>
+          <h6>Languages</h6>
+          <ion-list no-lines>
+            <ion-item *ngFor="let c of toBeDisplayed.languages">
+                <span item-left>{{c.nativeName}}</span> <b>{{c.name}}</b>  
+            </ion-item>
+          </ion-list>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+          <ion-item>
+            <h6>Region Blocks</h6>
+            <ion-list no-lines>
+              <ion-item *ngFor="let c of toBeDisplayed.regionalBlocs">
+                  <span item-left>{{c.name}}</span>
+              </ion-item>
+            </ion-list>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+            <ion-item>
+              <h6>Borders</h6>
+              <ion-list no-lines>
+                <ion-item *ngFor="let c of toBeDisplayed.borders">
+                    <span item-left>{{c}}</span>
+                </ion-item>
+              </ion-list>
+            </ion-item>
+          </ion-row>
+
+          <ion-row>
+              <ion-item>
+                <h6>Time Zones</h6>
+                <ion-list no-lines>
+                  <ion-item *ngFor="let c of toBeDisplayed.timezones">
+                      <span item-left>{{c}}</span>
+                  </ion-item>
+                </ion-list>
+              </ion-item>
+            </ion-row>
+  
+
+
 
 </ion-content>

@@ -17,7 +17,7 @@ import 'rxjs/add/operator/map'
   templateUrl: 'country-detail.html',
 })
 export class CountryDetailPage {
-  country:any
+  countryName:any
 
   countries: any;
 
@@ -31,9 +31,9 @@ export class CountryDetailPage {
 
     console.log('country details',this.navParams.get('country'));
 
-    this.country=this.navParams.get('country')
+    this.countryName=this.navParams.get('country')
 
-    console.log('country 1',this.country);
+    console.log('country 1',this.countryName);
     this.getAllCountries()
   }
 
@@ -42,18 +42,12 @@ export class CountryDetailPage {
       .map(res => res.json())
       .subscribe(data => {
         this.countries = data
-        console.log("all countries", this.countries)
-
-        //this.countries.forEach(element => {
-          //this.items.push(element["name"]);
-         /* if(this.country==element["name"]){
-            console.log("found country from each", this.eleme[a])
-          }
-        });*/
 
        for(let a=0;a<this.countries.length;a++){
-         if(this.country==this.countries[a].name){
+         if(this.countryName==this.countries[a].name){
           console.log("found country details", this.countries[a])
+          this.toBeDisplayed=this.countries[a]
+          console.log("to be displayed",this.toBeDisplayed)
          }
        }
 
